@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#0B0907">
+<title>Lost above the noise | Amber Saint</title>
+<link rel="icon" href="/favicon.ico" sizes="any"><link rel="icon" type="image/svg+xml" href="/assets/brand/favicon.svg">
+<link rel="preload" href="/assets/fonts/archivo-wdth.woff2" as="font" type="font/woff2" crossorigin>
+<style>
+@font-face{font-family:"Archivo";src:url(/assets/fonts/archivo-wdth.woff2) format("woff2");font-weight:100 900;font-stretch:62% 125%;font-display:swap}
+@font-face{font-family:"Fraunces";src:url(/assets/fonts/fraunces-italic.woff2) format("woff2");font-weight:100 900;font-style:italic;font-display:swap}
+@font-face{font-family:"Martian Mono";src:url(/assets/fonts/martian-mono-wdth.woff2) format("woff2");font-weight:100 800;font-stretch:75% 112.5%;font-display:swap}
+*{margin:0;box-sizing:border-box}
+html,body{height:100%}
+body{background:#0B0907;color:#EEE6D8;font:400 16px/1.5 Archivo,system-ui,sans-serif;display:grid;grid-template-rows:auto 1fr auto;padding:clamp(18px,2.4vw,40px);overflow:hidden}
+a{color:inherit;text-decoration:none}
+.top,.bot{display:flex;justify-content:space-between;font:400 10.5px/1.5 "Martian Mono",monospace;font-stretch:87.5%;text-transform:uppercase;color:rgba(238,230,216,.56)}
+.top a{display:inline-flex;align-items:center;gap:10px;font:600 15px Archivo,sans-serif;font-stretch:112%;color:#EEE6D8;text-transform:none}
+.top svg{width:26px;height:26px;color:#FF9A1F}
+main{align-self:center;position:relative;text-align:center}
+.halo{width:min(46vw,520px);margin:0 auto -4vw;color:#FF9A1F;animation:fall 2.6s cubic-bezier(.2,.7,.1,1) both,bob 3s 2.6s ease-in-out infinite alternate;filter:drop-shadow(0 0 40px rgba(255,154,31,.45))}
+h1{font-weight:800;font-stretch:125%;font-size:clamp(120px,30vw,420px);line-height:.8;letter-spacing:-.05em;animation:rise 1.4s .1s cubic-bezier(.2,.7,.1,1) both}
+p{font:300 italic clamp(22px,2.6vw,38px)/1.2 Fraunces,serif;color:#FF9A1F;margin-top:24px;animation:rise 1.4s .25s cubic-bezier(.2,.7,.1,1) both}
+.go{display:inline-flex;margin-top:34px;height:48px;align-items:center;padding:0 24px;border-radius:999px;background:#FF9A1F;color:#16110B;font-weight:600;animation:rise 1.4s .4s cubic-bezier(.2,.7,.1,1) both;transition:background .3s}
+.go:hover{background:#EEE6D8}
+@keyframes rise{from{opacity:0;transform:translateY(40px)}}
+@keyframes fall{from{opacity:0;transform:translateY(-120px) rotate(-14deg)}}
+@keyframes bob{to{transform:translateY(-10px) rotate(-2deg)}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important}}
+</style>
+</head>
+<body>
+<div class="top"><a href="/"><svg viewBox="0 0 100 100" fill="none" stroke="currentColor" aria-hidden="true"><ellipse cx="50" cy="15.5" rx="25" ry="7" stroke-width="5" transform="rotate(-9 50 15.5)"/><path d="M21 93 L50 45 L79 93" stroke-width="11.5" stroke-linejoin="miter" stroke-miterlimit="10"/></svg>Amber Saint</a><span>Error 404</span></div>
+<main>
+  <svg class="halo" viewBox="0 0 100 30" fill="none" stroke="currentColor" aria-hidden="true"><ellipse cx="50" cy="15" rx="46" ry="11" stroke-width="3" transform="rotate(-6 50 15)"/></svg>
+  <h1>404</h1>
+  <p>This page drifted a little too far above the noise.</p>
+  <a class="go" href="/">Back to the portfolio</a>
+</main>
+<div class="bot"><span>© 2026 Amber Saint</span><span>Above the noise</span></div>
+</body>
+</html>

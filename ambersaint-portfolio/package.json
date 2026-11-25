@@ -1,0 +1,11 @@
+{
+  "name": "amber-saint-portfolio",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Portfolio of Amber Saint: project manager, server administrator and Discord bot developer.",
+  "scripts": {
+    "dev": "npx --yes serve . -l 3000",
+    "check": "node scripts/check.mjs",
+    "seo": "node scripts/generate-seo.mjs"
+  }
+}

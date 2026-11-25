@@ -1,0 +1,75 @@
+# Amber Saint
+
+> Amber Saint (also known as amber_saint17) is a project manager, server administrator and Discord bot developer. For more than two years Amber has led staff teams, run marketing and growth and managed communities of up to 50,000 members, reaching 3M+ members across gaming, esports, Star Wars and tech servers.
+
+## Key facts
+- Name: Amber Saint (Discord username: amber_saint17)
+- Roles: Project Manager, Server Administrator, Discord Bot Developer
+- Experience: 2+ years of concurrent community management and bot making
+- Reach: 3M+ members across the communities contributed to
+- Built: Tower, an open-source Discord bot (MIT license) with 30+ slash commands and 17 modules
+- Also built: 3D models of BB-8 and R2-D2
+- Availability: open for commissions and management roles
+- Time zone: GMT+5:30
+
+## Links
+- Website: https://ambersaint.vercel.app/
+- Tower source code (MIT): https://github.com/ambersaint17/-OPEN-Tower
+- Tower video: https://youtu.be/y-10hRfeIN4
+- GitHub profile: https://github.com/ambersaint17
+- Discord profile: https://discord.com/users/1542873663278293150
+- Discord server (Tower, live): https://discord.gg/KhCgDPAABg
+- Roblox profile: https://www.roblox.com/users/7982369047/profile
+
+## Communities and roles
+- Flux Production: Project Manager
+- Overlooked HQ™: Community Manager
+- The Galactic Empire: Moderation Head
+- Aeronexus: CMO
+- Versify: Management · Marketing Manager
+- Omnitech: Marketing Supervisor
+- Rowboat's Recruitment Center: Manager
+- Sharky's Imperial Military: CET Director · Community Engagement Team
+- SNC Management: SNC Crew
+- Code 3 Response Supply: Moderation Director
+- Clover Systems: Director - Operations and LiveOps
+- Lead Your Team To Victory!: Project Manager
+- Nexus Development: Project Manager
+- Anime Mysterious: Junior Moderator
+- Karma: Management Team
+- Bee Fruits: Community Manager
+- Lumisoft Studios: Administrator
+- Pixel Interactive: Administrator · Lead Management
+- Rushed: Co-Founder
+- SoulForge: Project Manager
+
+## Common questions
+### Who is Amber Saint?
+Amber Saint, also known as amber_saint17, is a project manager, server administrator and Discord bot developer. For three years Amber has led staff teams, run marketing and growth and managed large communities, reaching 10M+ members across gaming, esports, Star Wars and tech servers. Amber also built Tower, a Discord bot with 30+ slash commands, and is open for commissions and management roles.
+
+### Why should I hire you?
+Because I care about the community more than the title. I'm not here for perks or popularity. I want to protect a server and keep it alive, and I've spent 3 years managing communities, reaching 10M+ members, to back that up. I'm on Discord around five hours a day, I learn the rules and the role properly before I start, and I stay calm and disciplined when things get tough.
+
+### What can you bring to my team?
+Efficiency and clear communication. I write and explain things cleanly, think creatively when a situation doesn't fit the rulebook, and keep an open mind instead of repeating what everyone else says. Add my past moderation and management experience and you get someone who picks things up quickly and doesn't leave problems sitting.
+
+### How do you keep members happy?
+By being fair, consistent and genuinely helpful. I treat everyone the same regardless of who is involved, stay unbiased, help people who come with good intentions, and keep things professional with trolls. I hold the rules firmly in mind and stick to them even when it's tense.
+
+### What can you manage?
+Staff teams, moderation, marketing, support and operations for Discord communities, including large networks.
+
+### Can you build any bot I need?
+Yes. Describe what your server needs and I'll scope it, build it and document it so your staff can run it.
+
+### Is Tower open source?
+Yes. Tower is released under the MIT license on GitHub at github.com/ambersaint17/-OPEN-Tower. It comes with a setup tutorial that takes about 20 minutes, runs on Node.js 20+ with discord.js 14 and a free Supabase database, and your data stays in your own database. There is also a video about it on YouTube.
+
+### How do I try your bots?
+Join my Discord server and use Tower live. Verification, rules, daily questions and the rest are all running there.
+
+### Do you take commissions?
+Yes. Message me on Discord with what you need built and I'll reply with next steps.
+
+### Which time zone are you in?
+GMT+5:30. I'm active on Discord and Roblox daily.

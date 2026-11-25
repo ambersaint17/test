@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="none" stroke="currentColor">
+  <title>Amber Saint</title>
+  <ellipse cx="50" cy="15.5" rx="25" ry="7" stroke-width="5" transform="rotate(-9 50 15.5)"/>
+  <path d="M21 93 L50 45 L79 93" stroke-width="11.5" stroke-linejoin="miter" stroke-miterlimit="10"/>
+</svg>
