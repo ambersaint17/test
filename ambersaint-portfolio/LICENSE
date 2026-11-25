@@ -1,0 +1,17 @@
+Copyright (c) 2026 Amber Saint (amber_saint17). All rights reserved.
+
+This repository contains the source code, design, brand identity (name, halo mark, colours and layout), text,
+images, renders, 3D models, video and audio of the website at https://ambersaint.vercel.app.
+
+You may view this code and visit the website. You may NOT copy, reproduce, modify, redistribute, re-host,
+sell or use any part of it (including the design, the halo effect, the brand mark or the content) in your own
+work or website without prior written permission from Amber Saint.
+
+Exceptions:
+- Third-party code in /vendor keeps its own licence (GSAP: GreenSock standard licence; Lenis: MIT;
+  model-viewer: Apache-2.0, see vendor/LICENSE-model-viewer.txt).
+- Fonts in /assets/fonts keep the SIL Open Font License (see assets/fonts/LICENSE-OFL.txt).
+- Tower, the Discord bot, is a separate project released under the MIT licence at
+  https://github.com/ambersaint17/-OPEN-Tower.
+
+For permission requests: valeriuselysium@gmail.com

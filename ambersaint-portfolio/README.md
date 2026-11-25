@@ -19,10 +19,12 @@ A hand-built static site: plain HTML, CSS and JavaScript, no framework and no bu
 ## What's on the page
 
 00 Hero with the halo · 01 Profile (manifesto, stats, live Discord status) · 02 Capabilities · 03 Method · 04 Where I lead (live member counts, cursor preview) ·
-05 What I own · studio teaser band · 06 Tower case study (interactive Discord preview, live GitHub stats, video, setup) · 07 Building worlds (horizontal gallery, 3D droids) ·
+05 What I own · studio teaser band · 06 Tower case study (interactive Discord preview, live GitHub stats, video, setup) · 07 Archive (builds, models and systems: a pinned slider with an odometer and a strip of every piece) ·
 08 Questions · 09 Contact (form to Discord, links) · footer.
 
-Extras: preloader, full-screen menu, command palette (`Ctrl/Cmd + K`), custom cursor, ambient sound toggle, smooth scrolling.
+Motion: the profile sheet slides up over the hero, method cards stack over each other, the archive slides sideways and skews with scroll speed, images open like curtains, links roll their letters on hover and buttons pull towards the cursor.
+
+Extras: preloader, full-screen menu, command palette (`Ctrl/Cmd + K`), personnel-file ID card with live Discord status, custom cursor, ambient sound toggle, smooth scrolling.
 
 ## Project structure
 
@@ -75,6 +77,8 @@ on a plain static server the site falls back to calling Discord and GitHub direc
 | Add an owned server | Add a row to `O` in `js/data/servers.js` |
 | Use my own logo for a private server | Drop `assets/logos/<name-in-kebab-case>.png` and add the name to `LOGOS` |
 | Change a Tower module card | Edit `js/data/tower.js` |
+| Add a build, model or system to the Archive | Copy one `<figure class="acard">` in `index.html` (see `docs/CONTENT-GUIDE.md`) |
+| Change the link preview (Discord, X) | Replace `assets/og/og-cover-2611.png` **under a new file name** and update the `og:image` / `twitter:image` tags, otherwise Discord keeps the old picture |
 | Update the FAQ | Edit the `#faq` section in `index.html`, then `npm run seo` |
 | Change the song | Replace `assets/audio/theme.mp3` |
 | Check nothing is broken | `npm run check` |
@@ -89,6 +93,7 @@ Known opportunity: `assets/video/aircraft-flyby-hq.mp4` is about 22 MB; compress
 
 ## Credits and licenses
 
+- This website (code, design, brand and content): all rights reserved, see `LICENSE`
 - Tower (open source, MIT): https://github.com/ambersaint17/-OPEN-Tower
 - GSAP (free standard license), Lenis (MIT), Google `<model-viewer>` (Apache-2.0, see `vendor/LICENSE-model-viewer.txt`)
 - Archivo, Fraunces, Martian Mono: SIL Open Font License (see `assets/fonts/LICENSE-OFL.txt`)
