@@ -139,6 +139,10 @@
   }
 
   function layout() {
+    var ht = hero.style.transform; hero.style.transform = 'none';   // measure the resting hero, not a frame of the sheet transition
+    try { layoutInner(); } finally { hero.style.transform = ht; }
+  }
+  function layoutInner() {
     var lite = document.documentElement.classList.contains('lite');
     DPR = Math.min(window.devicePixelRatio || 1, lite ? 1 : 1.75);
     var r = cv.getBoundingClientRect();

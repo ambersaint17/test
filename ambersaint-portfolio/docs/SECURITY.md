@@ -6,7 +6,7 @@ What the repo already enforces, and the few things that can only be switched on 
 
 | Area | What it does | Where |
 | --- | --- | --- |
-| Content-Security-Policy | Only this site's own scripts run. No inline scripts, no `eval`. Third-party hosts are limited to Discord's CDN, YouTube (no-cookie), Google Fonts, GitHub and Lanyard. `frame-ancestors 'none'` stops the site being framed. | `vercel.json` |
+| Content-Security-Policy | Only this site's own scripts run. No inline scripts, no `eval`. Fonts are self-hosted. Third-party hosts are limited to Discord's CDN, YouTube (no-cookie), GitHub, Lanyard and Google's 3D decoder for the models. `frame-ancestors 'none'` stops the site being framed. | `vercel.json` |
 | Other headers | HSTS, `X-Content-Type-Options`, `X-Frame-Options`, `Referrer-Policy`, `Permissions-Policy` (camera, microphone, location, payment, USB off), COOP, CORP. | `vercel.json` |
 | Internal files | `/docs`, `/scripts`, `/.github`, `README.md`, `package.json` and `vercel.json` redirect to the home page. `/js`, `/css` and `/vendor` are marked `noindex`. | `vercel.json` |
 | Contact endpoint | Same-origin check, JSON only, 8 KB cap, honeypot + timing trap, 3/min and 8/hour per visitor, 60/hour for the whole site, duplicate suppression, 8 s Discord timeout, only you can ever be pinged. | `api/contact.js` |
@@ -26,7 +26,7 @@ Project > **Firewall** > **Configure**:
 2. **Rate-limit all API routes.** *Request Path starts with `/api/`* → Rate Limit 60 requests per 60 s per IP, then 429.
 3. **Turn on Bot Protection** (Firewall > Bot Management) in **Challenge** mode so obvious automated traffic gets a browser check.
 4. **Know the panic button.** If you are ever under attack, enable **Attack Challenge Mode** (Firewall > Configure). It challenges every visitor and takes effect immediately. Turn it off afterwards.
-5. **Optional:** Settings > Billing > set a **Spend Management** limit so an attack can never turn into a surprise bill.
+5. **Billing:** on the free Hobby plan you are never charged for extra traffic, but a large attack can use up the plan's limits and get the project paused. Rules 1 to 3 are what prevent that. If you move to Pro, set a **Spend Management** limit.
 
 Vercel absorbs network-level (L3/L4) DDoS automatically on every plan. Rule limits per plan change over time, so check the Firewall page for what yours includes.
 
@@ -43,9 +43,13 @@ Note: firewall rules written inside `vercel.json` (`routes` + `mitigate`) cannot
 
 If the webhook URL is ever exposed (committed, pasted in a screenshot), delete the webhook in Discord and create a new one.
 
+## Keep the repository private
+
+GitHub repo > Settings > General > Danger Zone > **Change visibility** > Private. Vercel keeps deploying from a private repo on the free plan. This hides your API code, docs, scripts and history from the public; the live site keeps working exactly the same.
+
 ## What cannot be hidden
 
-Anything the browser runs (HTML, CSS, JavaScript, images) can be read by any visitor with DevTools, however it is delivered. What this setup does instead: keeps secrets out of that code entirely (the webhook lives only on the server), stops internal files (docs, scripts, config) being served, tells search engines not to index the code folders, and makes injected code unable to run.
+Anything the browser runs (HTML, CSS, JavaScript, images) can be read by any visitor with DevTools, however it is delivered. What this setup does instead: keeps secrets out of that code entirely (the webhook lives only on the server), stops internal files (docs, scripts, config) being served, tells search engines not to index the code folders, and makes injected code unable to run. Legally, `LICENSE` makes it explicit that the design, brand and content are all rights reserved, which is what lets you file a takedown if someone copies the site.
 
 ## Reporting a vulnerability
 

@@ -14,8 +14,14 @@ and add the same kebab-case name to `LOGOS` in `servers.js`.
 ## Tower preview
 `js/data/tower.js`, array `T`. Each entry is one channel in the Discord window: command, accent colour, banner, title, text, fields and buttons.
 
-## 3D models
-Drop a `.glb` in `assets/models/`, a still `.webp` in `assets/models/posters/`, and copy one of the `.wcard--droid` figures in `index.html`.
+## Archive (builds, models, systems)
+Each piece is one `<figure class="acard">` inside `#arTrack` in `index.html`. Copy the closest example and change:
+- `data-type` (Build, Model or System), `data-title`, `data-desc` (shown beside the slider) and `data-thumb` (the strip thumbnail)
+- the media: an `<img>` render (`acard__media` button opens it full screen), a `<video>` (`acard--video`), a 3D model (`acard--droid`, with `data-src` pointing at a `.glb` and a poster `.webp`) or a link (`acard--link`)
+The counter, the thumbnail strip and the slider length update themselves.
+
+## Link previews
+Discord and X cache the preview image by its address. To change it, save the new 1200 x 630 image under a new name in `assets/og/` and point the `og:image` and `twitter:image` tags (and `ogImage` in `scripts/generate-seo.mjs`) at it.
 
 ## Music
 Replace `assets/audio/theme.mp3`. It only plays after the visitor presses Sound (browsers block autoplay); the choice is remembered.

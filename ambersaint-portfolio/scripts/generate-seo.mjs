@@ -22,7 +22,7 @@ const SITE = {
   roblox: 'https://www.roblox.com/users/7982369047/profile',
   towerRepo: 'https://github.com/ambersaint17/-OPEN-Tower',
   towerVideo: 'https://youtu.be/y-10hRfeIN4',
-  image: 'assets/icons/icon-512.png', ogImage: 'assets/og/og-image.png',
+  image: 'assets/icons/icon-512.png', ogImage: 'assets/og/og-cover-2611.png',
 };
 
 const strip = (t) => t.replace(/<sup>TM<\/sup>/g, '\u2122').replace(/<[^>]+>/g, '').replace(/&amp;/g, '&').replace(/&#8599;/g, '').trim();
