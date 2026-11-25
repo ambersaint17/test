@@ -1,0 +1,6 @@
+# Report security issues privately. Please do not open public issues for vulnerabilities.
+Contact: https://discord.com/users/1542873663278293150
+Contact: mailto:valeriuselysium@gmail.com
+Expires: 2027-11-24T00:00:00.000Z
+Preferred-Languages: en
+Canonical: https://ambersaint.vercel.app/.well-known/security.txt
