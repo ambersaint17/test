@@ -15,6 +15,7 @@
 // rate limits, duplicate suppression and a Discord timeout. The in-memory limits are per server instance, so also add the
 // Vercel Firewall rate-limit rule described in docs/SECURITY.md, which is enforced before this code runs.
 
+const { timingSafeEqual } = require('node:crypto');
 const PING = process.env.CONTACT_PING_USER_ID || '1542873663278293150';
 const SITE = 'ambersaint.vercel.app';
 const BANNER = `https://${SITE}/assets/images/brand/banner-enquiry.png`;
@@ -171,7 +172,9 @@ module.exports = async function handler(req, res) {
   res.setHeader('X-Content-Type-Options', 'nosniff');
   if (req.method === 'GET') {
     const token = process.env.CONTACT_HEALTH_TOKEN;
-    return res.status(200).json(await health(Boolean(token) && req.headers['x-health-token'] === token));
+    const given = String(req.headers['x-health-token'] || '');
+    const okToken = Boolean(token) && given.length === token.length && timingSafeEqual(Buffer.from(given), Buffer.from(token));
+    return res.status(200).json(await health(okToken));
   }
   if (req.method !== 'POST') {
     res.setHeader('Allow', 'GET, POST');
@@ -198,7 +201,7 @@ module.exports = async function handler(req, res) {
     name: line(b.name, 60),
     discord: line(b.discord, 64),
     email: line(b.email, 120),
-    type: TYPES.includes(b.type) ? b.type : 'Something else',
+    type: TYPES.includes(b.type) ? b.type : 'Something Else',
   };
   if (data.message.length < 5) return res.status(400).json({ ok: false, error: 'message' });
   if (data.discord && !DISCORD_ID_RE.test(data.discord)) return res.status(400).json({ ok: false, error: 'discord_id' });
