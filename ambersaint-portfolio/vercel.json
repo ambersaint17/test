@@ -27,7 +27,7 @@
       "headers": [
         {
           "key": "Content-Security-Policy",
-          "value": "default-src 'self'; script-src 'self' 'wasm-unsafe-eval' https://www.gstatic.com; style-src 'self' 'unsafe-inline'; font-src 'self' data:; img-src 'self' data: blob: https://cdn.discordapp.com https://media.discordapp.net https://i.ytimg.com; media-src 'self' blob: data:; connect-src 'self' blob: data: https://api.lanyard.rest https://api.github.com https://discord.com https://www.gstatic.com; frame-src https://www.youtube-nocookie.com; worker-src 'self' blob:; manifest-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'; upgrade-insecure-requests"
+          "value": "default-src 'self'; script-src 'self' 'wasm-unsafe-eval' https://www.gstatic.com; style-src 'self' 'unsafe-inline'; font-src 'self' data:; img-src 'self' data: blob: https://cdn.discordapp.com https://media.discordapp.net https://i.ytimg.com https://i.scdn.co; media-src 'self' blob: data:; connect-src 'self' blob: data: https://api.lanyard.rest https://api.github.com https://discord.com https://www.gstatic.com; frame-src https://www.youtube-nocookie.com; worker-src 'self' blob:; manifest-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'; upgrade-insecure-requests"
         },
         {
           "key": "Strict-Transport-Security",
@@ -47,7 +47,7 @@
         },
         {
           "key": "Permissions-Policy",
-          "value": "camera=(), microphone=(), geolocation=(), payment=(), usb=(), serial=(), bluetooth=(), browsing-topics=()"
+          "value": "camera=(), microphone=(), geolocation=(), payment=(), usb=(), serial=(), browsing-topics=()"
         },
         {
           "key": "Cross-Origin-Opener-Policy",
