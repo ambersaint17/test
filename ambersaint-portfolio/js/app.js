@@ -250,6 +250,8 @@
     });
   }
   intro();
+  // failsafe: if an animation library throws mid-intro, never leave the visitor behind the loading screen
+  setTimeout(function () { var p = $('#pre'); if (p) { p.remove(); if (lenis) lenis.start(); if (window.Halo && window.Halo.ok) window.Halo.show(); } }, 9000);
 
   /* ================================================================ reveals */
   if (HAS_GSAP && !REDUCE) {
@@ -344,7 +346,7 @@
     INVITES[c] = (ok && Date.now() - s.t < INV.fresh) ? Promise.resolve(s.d) : invLoad(c, 0).then(function (d) { invSave(c, d); return d; }).catch(function () { return ok && Date.now() - s.t < INV.stale ? s.d : null; });
     return INVITES[c];
   }
-  function guildIcon(d, size) { return d && d.guild && d.guild.icon ? 'https://cdn.discordapp.com/icons/' + d.guild.id + '/' + d.guild.icon + '.' + (d.guild.icon.indexOf('a_') === 0 ? 'gif' : 'png') + '?size=' + (size || 128) : ''; }
+  function guildIcon(d, size) { return d && d.guild && /^\d{5,25}$/.test(String(d.guild.id)) && /^(a_)?[a-f0-9]{8,40}$/i.test(String(d.guild.icon || '')) ? 'https://cdn.discordapp.com/icons/' + d.guild.id + '/' + d.guild.icon + '.' + (d.guild.icon.indexOf('a_') === 0 ? 'gif' : 'png') + '?size=' + (size || 128) : ''; }
   function fmt(n) { return n >= 1e6 ? (n / 1e6).toFixed(1).replace(/\.0$/, '') + 'M' : n >= 1e4 ? Math.round(n / 1e3) + 'K' : n.toLocaleString('en-US'); }
 
   /* ================================================================ 04 where I lead */
@@ -357,7 +359,7 @@
       var href = s.codes.length ? INVITE + s.codes[0] : '', tag = href ? 'a' : 'div';
       var attrs = href ? ' href="' + href + '" target="_blank" rel="noopener" data-cursor="Join" data-ev="invite_lead"' : ' tabindex="0"';
       var mem = s.members ? fmt(s.members) + '<small class="mono">members</small>' : (s.codes.length ? '<span class="mono">—</span>' : '<small class="mono">Private</small>');
-      var ico = s.icon ? '<img src="' + s.icon + '" alt="" loading="lazy" data-rm>' : '';
+      var ico = s.icon ? '<img src="' + esc(s.icon) + '" alt="" loading="lazy" data-rm>' : '';
       return '<' + tag + ' class="irow' + (href ? '' : ' irow--int') + '" role="row" data-i="' + i + '"' + attrs + '>' +
         '<span class="irow__n mono" role="cell">' + ('0' + (i + 1)).slice(-2) + '</span>' +
         '<span class="irow__name" role="cell"><span class="irow__ico">' + ico + '<span class="irow__ini">' + (ico ? '' : initials(s.name)) + '</span></span><span>' + s.name + '</span></span>' +
@@ -542,12 +544,13 @@
 
   // lightbox
   var lb = $('#lb'), lbImg = $('#lbImg');
-  function closeLB() { lb.hidden = true; if (lenis) lenis.start(); }
+  var lbFrom = null;
+  function closeLB() { lb.hidden = true; if (lenis) lenis.start(); if (lbFrom && lbFrom.focus) lbFrom.focus({ preventScroll: true }); lbFrom = null; }
   $$('.acard__media[data-lb]').forEach(function (b) {
     b.addEventListener('click', function () {
       var im = $('img', b), cap = $('figcaption b', b.parentNode);
       lbImg.src = im.currentSrc || im.src; lbImg.alt = im.alt; $('#lbCap').textContent = cap ? cap.textContent : '';
-      lb.hidden = false; if (lenis) lenis.stop(); $('#lbX').focus();
+      lbFrom = b; lb.hidden = false; if (lenis) lenis.stop(); $('#lbX').focus();
       if (HAS_GSAP && !REDUCE) G.from(lbImg, { scale: 0.92, opacity: 0, duration: 0.6, ease: 'expo.out' });
     });
   });
@@ -564,17 +567,18 @@
       if (v('#fMsg').length < 5) { fs.textContent = 'Tell me a little about the project first.'; $('#fMsg').focus(); return false; }
       if (v('#fDiscord') && !/^\d{17,20}$/.test(v('#fDiscord'))) { fs.textContent = 'A Discord user ID is 17 to 20 digits.'; $('#fDiscord').focus(); return false; }
       if (!v('#fDiscord') && !v('#fEmail')) { fs.textContent = 'Add your Discord user ID or an email so I can reply.'; $('#fDiscord').focus(); return false; }
+      if (v('#fEmail') && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v('#fEmail'))) { fs.textContent = 'That email address does not look right.'; $('#fEmail').focus(); return false; }
       return true;
     };
     form.addEventListener('submit', function (e) {
       e.preventDefault(); if (busy || !valid()) return;
-      busy = true; send.disabled = true; $('span', send).textContent = 'Sending…'; fs.textContent = '';
+      busy = true; send.disabled = true; $('span', send).textContent = 'Sending…'; fs.textContent = ''; var sentType = type();
       fetch('/api/contact', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ name: v('#fName'), discord: v('#fDiscord'), email: v('#fEmail'), type: type(), message: v('#fMsg'), website: $('#fTrap').value, elapsed: Date.now() - t0 }) })
         .then(function (r) { return r.json().catch(function () { return {}; }).then(function (j) { if (!r.ok || !j.ok) throw new Error(j.error || 'http ' + r.status); }); })
-        .then(function () { fs.textContent = "Sent. Thank you, I'll get back to you."; form.reset(); $('span', send).textContent = 'Sent ✓'; track('contact_sent', { type: type() }); setTimeout(function () { busy = false; send.disabled = false; $('span', send).textContent = 'Send message'; }, 15000); })
+        .then(function () { fs.textContent = "Sent. Thank you, I'll get back to you."; form.reset(); $('span', send).textContent = 'Sent ✓'; track('contact_sent', { type: sentType }); setTimeout(function () { busy = false; send.disabled = false; $('span', send).textContent = 'Send message'; }, 15000); })
         .catch(function (err) {
           var m = (err && err.message) || '';
-          fs.textContent = (m === 'rate_limited' || m === 'http 429' ? "You've sent a few messages quickly. Wait a minute and try again." : m === 'discord_id' ? "That Discord ID doesn't look right." : m === 'forbidden' || m === 'http 403' ? 'That message was blocked for safety. Reload and try again.' : "That didn't go through.") + ' You can use Email instead or Copy for Discord.';
+          fs.textContent = (m === 'rate_limited' || m === 'http 429' ? "You've sent a few messages quickly. Wait a minute and try again." : m === 'discord_id' ? "That Discord ID doesn't look right." : m === 'email' ? 'That email address does not look right.' : m === 'message' ? 'Tell me a little more about the project.' : m === 'forbidden' || m === 'http 403' ? 'That message was blocked for safety. Reload and try again.' : "That didn't go through.") + ' You can use Email instead or Copy for Discord.';
           busy = false; send.disabled = false; $('span', send).textContent = 'Send message';
         });
     });
@@ -623,7 +627,7 @@
   if (sBtn) {
     sBtn.addEventListener('click', function () { setSound(!sound.on, true); });
     var pref = null; try { pref = localStorage.getItem('as_sound'); } catch (e) { }
-    if (pref === '1') { var resume = function () { setSound(true); removeEventListener('pointerdown', resume); removeEventListener('keydown', resume); }; addEventListener('pointerdown', resume, { once: true }); addEventListener('keydown', resume, { once: true }); }
+    if (pref === '1') { var resume = function (e) { if (e && e.target && e.target.closest && e.target.closest('#soundBtn')) return; setSound(true); removeEventListener('pointerdown', resume); removeEventListener('keydown', resume); }; addEventListener('pointerdown', resume, { once: true }); addEventListener('keydown', resume, { once: true }); }
   }
 
   /* ================================================================ command palette (Ctrl/Cmd + K) */
